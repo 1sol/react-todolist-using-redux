@@ -1,7 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
+import Checkbox from "src/components/Checkbox";
 
-const TodoForm = ({ items, onChangeChecked }) => {
+const TodoForm = ({ items }) => {
   return (
     <div className="todo-list">
       <h1 className="title">Todo List</h1>
@@ -9,7 +10,7 @@ const TodoForm = ({ items, onChangeChecked }) => {
         <ul>
           {items.map((item) => (
             <>
-              <checkbox onChange={onChangeChecked} />
+              <Checkbox />
               <li>{item}</li>
             </>
           ))}
@@ -21,7 +22,6 @@ const TodoForm = ({ items, onChangeChecked }) => {
 
 TodoForm.propType = {
   items: PropTypes.any,
-  onChangeChecked: PropTypes.func,
 };
 
 export default TodoForm;
