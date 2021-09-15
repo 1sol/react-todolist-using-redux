@@ -2,6 +2,10 @@
   margin-left: 100px;
 }
 
-.btn-update {
-  margin-right: 5px;
+.btn-delete {
+  margin-left: 5px;
+}
+
+.btn-save {
+  margin-left: 5px;
 }
