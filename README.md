@@ -1,3 +1,3 @@
-# react-todolist-using-redux
+# react-todolist-using-reduxjs/toolkit
 
-@reduxjs/toolkit 을 사용한 redux 구현 
+@reduxjs/toolkit 을 사용한 todo list 구현
