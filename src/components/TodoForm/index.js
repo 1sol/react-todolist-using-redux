@@ -1,3 +1,1 @@
-import TodoForm from "./TodoForm";
-
-export default TodoForm;
+export { default } from "./TodoForm";

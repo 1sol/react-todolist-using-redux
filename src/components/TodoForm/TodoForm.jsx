@@ -1,20 +1,18 @@
 import React from "react";
 import PropTypes from "prop-types";
-import Checkbox from "src/components/Checkbox";
+import "./TodoForm.css";
 
-const TodoForm = ({ items }) => {
+const TodoForm = ({ items, handleClickUpdate, handleClickDelete }) => {
   return (
-    <div className="todo-list">
-      <h1 className="title">Todo List</h1>
-      <div className="list">
-        <ul>
-          {items.map((item) => (
-            <>
-              <Checkbox />
-              <li>{item}</li>
-            </>
-          ))}
-        </ul>
+    <div className="todo-item">
+      <ul>
+        <li>{items}</li>
+      </ul>
+      <div className="btn-wrap">
+        <button onClick={handleClickUpdate} className="btn-update">
+          수정
+        </button>
+        <button onClick={() => handleClickDelete()}>삭제</button>
       </div>
     </div>
   );
@@ -22,6 +20,8 @@ const TodoForm = ({ items }) => {
 
 TodoForm.propType = {
   items: PropTypes.any,
+  handleClickUpdate: PropTypes.func,
+  handleClickDelete: PropTypes.func,
 };
 
 export default TodoForm;

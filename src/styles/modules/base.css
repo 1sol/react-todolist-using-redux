@@ -1,0 +1,98 @@
+/*
+ * File        : base.scss
+ * Description : 프로젝트 기본 global 설정
+                 NanumSquare - Regular(400), Bold(700), Extra Bold(800), Light(300)    
+*/
+
+html {
+  font-size: 100%;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  color: #000;
+  font: 1.2em/1.3em "NanumSquare", sans-serif;
+  overflow-x: hidden;
+}
+
+p,
+span,
+strong,
+a,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+b,
+dt,
+dd,
+li,
+label,
+button,
+abbr {
+  transform: skew(-0.03deg);
+}
+
+legend,
+.hidden {
+  position: absolute;
+  clip: rect(0, 0, 0, 0);
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+}
+
+caption {
+  position: relative;
+  clip: rect(0 0 0 0);
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+}
+
+a {
+  color: #000;
+  text-decoration: none;
+}
+
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.icon,
+i[class^="icon-"] {
+  display: inline-block;
+}
+
+.icon,
+i[class^="icon-"] span {
+  position: absolute;
+  clip: rect(0, 0, 0, 0);
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+}
+
+button,
+.button {
+  border: 0;
+  border-color: transparent;
+  background-color: transparent;
+  font-family: "NanumSquare", sans-serif;
+  cursor: pointer;
+  padding: 0;
+}
+
+button,
+.button:focus {
+  outline: 0;
+}
