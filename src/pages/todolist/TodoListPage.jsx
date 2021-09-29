@@ -11,15 +11,16 @@ import {
 const TodoListPage = () => {
   const dispatch = useDispatch();
   const [addText, setAddText] = useState("");
+  const [checked, setChecked] = useState(false);
   const [updateMode, setUpdateMode] = useState(false);
 
   const todos = useSelector((state) => {
     return state.todos;
   });
 
-  const handleClickAdd = (text) => {
-    if (text.length) {
-      dispatch(addTodoList(text));
+  const handleClickAdd = () => {
+    if (addText.length) {
+      dispatch(addTodoList(addText));
       setAddText("");
     } else {
       alert("추가할 내용을 입력해주세요.");
@@ -27,11 +28,18 @@ const TodoListPage = () => {
   };
 
   const handleChangeChecked = (id) => {
+    setChecked(!checked);
     dispatch(toggleTodoList(id));
   };
 
   const handleChangeAddTitle = (text) => {
     setAddText(text);
+  };
+
+  const handleKeyDown = (e) => {
+    if (e.keyCode === 13) {
+      handleClickAdd();
+    }
   };
 
   const handleClickDelete = (id) => {
@@ -51,9 +59,10 @@ const TodoListPage = () => {
             type="text"
             value={addText}
             onChange={(e) => handleChangeAddTitle(e.target.value)}
+            onKeyDown={handleKeyDown}
             className="input"
           />
-          <button onClick={() => handleClickAdd(addText)} className="btn-add">
+          <button onClick={handleClickAdd} className="btn-add">
             추가
           </button>
         </div>
