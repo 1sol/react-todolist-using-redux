@@ -27,9 +27,8 @@ const TodoListPage = () => {
     }
   };
 
-  const handleChangeChecked = (id) => {
-    setChecked(!checked);
-    dispatch(toggleTodoList(id));
+  const handleChangeChecked = (item) => {
+    dispatch(toggleTodoList(item));
   };
 
   const handleChangeAddTitle = (text) => {
@@ -72,7 +71,7 @@ const TodoListPage = () => {
             <div key={shortid.generate()} className="list">
               <Checkbox
                 isChecked={item.checked}
-                onChangeChecked={() => handleChangeChecked(item.id)}
+                onChangeChecked={() => handleChangeChecked(item)}
               />
               <TodoForm
                 items={item.title}

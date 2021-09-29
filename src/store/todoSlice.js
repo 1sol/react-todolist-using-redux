@@ -19,7 +19,7 @@ export const todosSlice = createSlice({
   name: "todos",
   initialState,
   reducers: {
-    addTodoList(state, action) {
+    addTodoList: (state, action) => {
       const nextId = Math.max(...state.map((todo) => todo.id)) + 1;
       state.push({
         id: nextId,
@@ -29,15 +29,17 @@ export const todosSlice = createSlice({
       });
     },
 
-    toggleTodoList(state, action) {
-      return state.map((todo) => {
-        return todo.id === action.payload
-          ? { ...todo, done: !todo.done }
-          : todo;
-      });
+    toggleTodoList: (state, { payload: { id, checked } }) => {
+      const checkedId = state.findIndex((item) => item.id === id);
+      state[checkedId].checked = !checked;
+      // state.map((todo) => {
+      //   return todo.id === action.payload
+      //     ? { ...todo, checked: !todo.checked }
+      //     : todo;
+      // });
     },
 
-    deleteTodoList(state, action) {
+    deleteTodoList: (state, action) => {
       return state.filter((todo) => todo.id !== action.payload);
     },
   },
