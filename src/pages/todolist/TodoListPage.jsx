@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-no-duplicate-props */
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import shortid from "shortid";
@@ -7,13 +6,11 @@ import {
   addTodoList,
   toggleTodoList,
   deleteTodoList,
-  updateTodoList,
 } from "../../store/todoSlice";
 
 const TodoListPage = () => {
   const dispatch = useDispatch();
   const [addText, setAddText] = useState("");
-  const [updateText, setUpdateText] = useState("");
   const [updateMode, setUpdateMode] = useState(false);
 
   const todos = useSelector((state) => {
@@ -33,17 +30,8 @@ const TodoListPage = () => {
     dispatch(toggleTodoList(id));
   };
 
-  const handleChangeAddTitle = (e) => {
-    setAddText(e.target.value);
-  };
-
-  const handleClickSave = (text) => {
-    dispatch(updateTodoList(text));
-    setUpdateMode(false);
-  };
-
-  const handleChangeUpdateText = (e) => {
-    setUpdateText(e.target.value);
+  const handleChangeAddTitle = (text) => {
+    setAddText(text);
   };
 
   const handleClickDelete = (id) => {
@@ -62,7 +50,7 @@ const TodoListPage = () => {
           <input
             type="text"
             value={addText}
-            onChange={handleChangeAddTitle}
+            onChange={(e) => handleChangeAddTitle(e.target.value)}
             className="input"
           />
           <button onClick={() => handleClickAdd(addText)} className="btn-add">
@@ -73,22 +61,14 @@ const TodoListPage = () => {
         <div className="todo-list">
           {todos.map((item) => (
             <div key={shortid.generate()} className="list">
-              {updateMode ? (
-                ""
-              ) : (
-                <Checkbox
-                  isChecked={item.checked}
-                  onChangeChecked={() => handleChangeChecked(item.id)}
-                />
-              )}
+              <Checkbox
+                isChecked={item.checked}
+                onChangeChecked={() => handleChangeChecked(item.id)}
+              />
               <TodoForm
                 items={item.title}
-                updateMode={updateMode}
-                updateValue={updateText}
-                onChangeUpdateText={handleChangeUpdateText}
                 handleClickUpdateMode={handleClickUpdateMode}
                 handleClickDelete={() => handleClickDelete(item.id)}
-                handleClickSave={() => handleClickSave(updateText)}
               />
             </div>
           ))}

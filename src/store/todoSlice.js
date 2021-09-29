@@ -19,16 +19,14 @@ export const todosSlice = createSlice({
   name: "todos",
   initialState,
   reducers: {
-    addTodoList: {
-      reducer: (state, { payload }) => {
-        return [...state, { index: payload.index, title: payload.title }];
-      },
-      prepare: (index, title) => ({
-        payload: {
-          index: index + 1,
-          title,
-        },
-      }),
+    addTodoList(state, action) {
+      const nextId = Math.max(...state.map((todo) => todo.id)) + 1;
+      state.push({
+        id: nextId,
+        title: action.payload,
+        checked: false,
+        done: false,
+      });
     },
 
     toggleTodoList(state, action) {
@@ -39,21 +37,13 @@ export const todosSlice = createSlice({
       });
     },
 
-    updateTodoList(state, { payload }) {
-      return state.map((todo) => {
-        return todo.id === payload.id
-          ? { ...todo, title: payload.title }
-          : todo;
-      });
-    },
-
     deleteTodoList(state, action) {
       return state.filter((todo) => todo.id !== action.payload);
     },
   },
 });
 
-export const { addTodoList, toggleTodoList, updateTodoList, deleteTodoList } =
+export const { addTodoList, toggleTodoList, deleteTodoList } =
   todosSlice.actions;
 
 export default todosSlice.reducer;
