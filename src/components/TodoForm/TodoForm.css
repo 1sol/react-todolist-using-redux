@@ -3,9 +3,13 @@
 }
 
 .btn-delete {
-  margin-left: 5px;
+  margin-left: 10px;
 }
 
 .btn-save {
   margin-left: 5px;
+}
+
+.todo-done {
+  text-decoration: line-through;
 }

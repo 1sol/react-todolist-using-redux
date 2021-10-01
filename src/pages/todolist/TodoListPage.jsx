@@ -4,14 +4,13 @@ import shortid from "shortid";
 import { Checkbox, TodoForm } from "components";
 import {
   addTodoList,
-  toggleTodoList,
+  toggleCheckedTodoList,
   deleteTodoList,
 } from "../../store/todoSlice";
 
 const TodoListPage = () => {
   const dispatch = useDispatch();
   const [addText, setAddText] = useState("");
-  const [checked, setChecked] = useState(false);
   const [updateMode, setUpdateMode] = useState(false);
 
   const todos = useSelector((state) => {
@@ -28,7 +27,7 @@ const TodoListPage = () => {
   };
 
   const handleChangeChecked = (item) => {
-    dispatch(toggleTodoList(item));
+    dispatch(toggleCheckedTodoList(item));
   };
 
   const handleChangeAddTitle = (text) => {
@@ -70,11 +69,12 @@ const TodoListPage = () => {
           {todos.map((item) => (
             <div key={shortid.generate()} className="list">
               <Checkbox
-                isChecked={item.checked}
+                isChecked={item.done}
                 onChangeChecked={() => handleChangeChecked(item)}
               />
               <TodoForm
                 items={item.title}
+                doneState={item.done}
                 handleClickUpdateMode={handleClickUpdateMode}
                 handleClickDelete={() => handleClickDelete(item.id)}
               />

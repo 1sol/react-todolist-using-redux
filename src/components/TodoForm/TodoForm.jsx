@@ -2,11 +2,11 @@ import React from "react";
 import PropTypes from "prop-types";
 import "./TodoForm.css";
 
-const TodoForm = ({ items, handleClickDelete }) => {
+const TodoForm = ({ items, doneState, handleClickDelete }) => {
   return (
     <div className="todo-item">
       <ul>
-        <li>{items}</li>
+        <li className={doneState ? "todo-done" : ""}>{items}</li>
       </ul>
       <div className="btn-wrap">
         <button onClick={handleClickDelete} className="btn-delete">
@@ -19,6 +19,7 @@ const TodoForm = ({ items, handleClickDelete }) => {
 
 TodoForm.propType = {
   items: PropTypes.string,
+  doneState: PropTypes.any,
   handleClickDelete: PropTypes.func,
 };
 
